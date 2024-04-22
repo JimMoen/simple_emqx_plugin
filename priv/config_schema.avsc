@@ -79,6 +79,7 @@
     {
       "name": "databaseType",
       "type": {
+        "name": "Simple",
         "type": "enum",
         "symbols": [
           "PostgreSQL",
