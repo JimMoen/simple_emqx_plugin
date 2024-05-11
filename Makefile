@@ -1,11 +1,14 @@
 ## shallow clone for speed
+export REBAR_GIT_CLONE_OPTIONS += --depth=1
 
-BUILD_WITHOUT_QUIC ?= true
-export BUILD_WITHOUT_QUIC
-BUILD_WITHOUT_ROCKSDB ?= true
-export BUILD_WITHOUT_ROCKSDB
+export BUILD_WITHOUT_QUIC ?= true
+export BUILD_WITHOUT_ROCKSDB ?= true
 
 REBAR ?= $(or $(shell which rebar3 2>/dev/null),$(CURDIR)/rebar3)
+## TODO: OTP vsn check
+## OTP 24 not supported,
+## 3.19.0-emqx-9 for OTP 25
+## 3.20.0-emqx-1 for OTP 26
 REBAR_VERSION ?= 3.19.0-emqx-1
 
 .PHONY: all
