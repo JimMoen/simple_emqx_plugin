@@ -21,3 +21,13 @@ test/ct.cover.spec
 rebar3.crashdump
 rebar3
 erlang_ls.config
+# VSCode files
+.vs/
+.vscode/
+# Emacs Backup files
+*~
+# Emacs temporary files
+.#*
+*#
+# For direnv
+.envrc
