@@ -3,23 +3,21 @@ export REBAR_GIT_CLONE_OPTIONS += --depth=1
 
 export BUILD_WITHOUT_QUIC ?= true
 export BUILD_WITHOUT_ROCKSDB ?= true
+## for maybe_expr in rebar plugin emqx_plugrel
+export ERL_FLAGS ?= -enable-feature maybe_expr
 
-REBAR ?= $(or $(shell which rebar3 2>/dev/null),$(CURDIR)/rebar3)
-## TODO: OTP vsn check
-## OTP 24 not supported,
-## 3.19.0-emqx-9 for OTP 25
-## 3.20.0-emqx-1 for OTP 26
-REBAR_VERSION ?= 3.19.0-emqx-1
+REBAR = $(CURDIR)/rebar3
+SCRIPTS = $(CURDIR)/scripts
 
 .PHONY: all
 all: compile
 
-.PHONY: get-rebar3
-get-rebar3:
-	@$(CURDIR)/get-rebar3 $(REBAR_VERSION)
+.PHONY: ensure-rebar3
+ensure-rebar3:
+	@$(SCRIPTS)/ensure-rebar3.sh
 
 $(REBAR):
-	$(MAKE) get-rebar3
+	$(MAKE) ensure-rebar3
 
 .PHONY: compile
 compile: $(REBAR)
